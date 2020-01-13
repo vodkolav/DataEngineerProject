@@ -5,4 +5,4 @@ conda install nodejs
 conda install npm
 nbdime extensions --enable
 
-#hello 2
+pip install textblob
