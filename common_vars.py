@@ -6,7 +6,7 @@ import pyarrow as pa
 
 topic = 'TweeterArchive'
 partitionCol = "created_ym"
-Keywords = 'Israel'
+Keywords = 'Tesla'
 
 
 hdfs_host = 'localhost'
@@ -14,13 +14,13 @@ hdfs_port = 9870
 hive_port = 10000
 hive_username = 'hdfs'
 hive_password = 'naya'
-hive_database = 'twitter'
+hive_database = 'tesla'
 hive_mode = 'CUSTOM'
 
 hdfs_archive_path = '/tmp/project/archive'    
 hdfs_archive_checkpoint_path = hdfs_archive_path + '/sparkcheckpoint'
 
-hdfs_hive_warehouse = '/user/hive/warehouse'    
+hdfs_hive_warehouse = '/user/hive/warehouse/'    
 
 hdfs_hive_staging = '/tmp/project/hive/tweets'
 hdfs_hive_staging_checkpoint = hdfs_hive_staging + '/sparkcheckpoint'
