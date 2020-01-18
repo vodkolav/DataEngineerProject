@@ -1,7 +1,14 @@
+from time import time, sleep
+from itertools import cycle
 from pyspark.sql.types import StructType, StringType, MapType, StructField,\
                              BooleanType, DateType, NumericType, IntegerType,\
                              LongType, TimestampType, FloatType, ArrayType
-import pyarrow as pa
+
+consumer_key    = 'T3bxHQI78bQSMxhryPQk4rgMs'
+consumer_secret = 'uZEP6eLjUGGkS4YtRvm3PISnpMlho7vniHKeoZMF2NVu9B6rpe'
+access_token    = '1207006565074640897-c761jqaeRPkTPeyjBFxlPqsirDhYQ1'
+access_secret   = 'qmJiaHbct4hshX4mcVIx2BuKCPdo8xndNPb7bOLes4MOs'
+
 
 topic = 'TweeterArchive'
 partitionCol = "created_ym"
@@ -57,6 +64,21 @@ user_types = [LongType, StringType, StringType, TimestampType, StringType, Strin
 # user_types = [StringType]* 14
 
 
-
+def poll_continiously(Query, period = .35, attrname = 'status'):
+    chars = "⠁⠂⠄⡀⢀⠠⠐⠈"
+    #chars = '←↖↑↗→↘↓↙'
+    #chars = 'wingardium_leviosa '
+    #chars = 'I solemnly swear that I am up to no good'.replace(' ','_')+' '
+    spinner = cycle(chars)
+    while True:
+        try:
+            sleep(period)
+            val = getattr(Query, attrname)
+            print('\r'+next(spinner)+repr(val)[:100]+(' '*100) ,end = '')
+        except KeyboardInterrupt:
+            print('\rSTOPPED polling (KeyboardInterrupt)'+(' '*100) ,end = '')
+            break    
+        except Exception as e :
+            print("\roops",end = '')
 
 
